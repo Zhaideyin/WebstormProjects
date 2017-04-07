@@ -18,7 +18,7 @@
             -webkit-line-clamp: 3;
             overflow: hidden;
         }
-.professorBOX1{margin-left: 30px;}
+     .professorBOX1{margin-left: 30px;}
         .tcdPageCode{padding: 15px 20px;text-align: left;color: #ccc;}
         .tcdPageCode a{display: inline-block;color: #428bca;display: inline-block;height: 25px;	line-height: 25px;	padding: 0 10px;border: 1px solid #ddd;	margin: 0 2px;border-radius: 4px;vertical-align: middle;}
         .tcdPageCode a:hover{text-decoration: none;border: 1px solid #428bca;}
@@ -240,7 +240,7 @@
     //xsscd.xicp.net:8005  http://xsscd.xicp.net:8005/spsm/api/breed/list?page=1&count=1
     $.ajax({
         type: "get",
-        url: "http://xsscd.xicp.net:8005/spsm/api/person/list",
+        url: SERVER_URL +"/spsm/api/person/list",
         data: "page=1&count=24",
         dataType: "json",
         success: function (msg) {
@@ -252,7 +252,7 @@
                     pageNum = p;
                     $.ajax({//通过发送get请求，得到下一页的数据
                         type: "get",
-                        url: "http://xsscd.xicp.net:8005/spsm/api/person/list",
+                        url: SERVER_URL +"/spsm/api/person/list",
                         data: "page=" + pageNum + "&count=24",
                         dataType: "json",
                         success: function (msg) {
@@ -276,11 +276,6 @@
                 }
             });
             for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
-                var num = i + 1;
-                if (i == 0) {
-
-
-                } else {
 
                     str += "<tr>" +
                             "<td >" + (Number(pageNum-1)*Number(24)+i) + "</td>" +
@@ -295,7 +290,7 @@
                             "</td>" +
                             "</tr>"
                 }
-            }
+
             $(".tableProfessor").html(str)
         }
     });

@@ -206,7 +206,7 @@
     //http://xsscd.xicp.net:8005/spsm/api/achievement/list
     $.ajax({
         type: "get",
-        url: "http://xsscd.xicp.net:8005/spsm/api/achievement/list",
+        url: SERVER_URL +"/spsm/api/achievement/list",
         data: "page=1&count=18",
         dataType: "json",
         success: function (msg) {
@@ -218,13 +218,13 @@
                     pageNum = p;
                     $.ajax({//通过发送get请求，得到下一页的数据
                         type: "get",
-                        url: "http://xsscd.xicp.net:8005/spsm/api/achievement/list",
+                        url: SERVER_URL +"/spsm/api/achievement/list",
                         data: "page=" + pageNum + "&count=18",
                         dataType: "json",
                         success: function (msg) {
                             str = "";
                             for (var i = 0; i < msg.data.length; i++) {
-                                var num = i + 1;
+
                                 str += "<tr>" +
                                         "<td >" + (Number(pageNum-1)*Number(18)+i) + "</td>" +
                                         "<td style='height:30px;overflow: hidden;text-overflow:ellipsis;display: block;white-space: nowrap;padding-top: 10px;text-align: left'>"+
@@ -242,11 +242,7 @@
                 }
             });
             for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
-                var num = i + 1;
-                if (i == 0) {
 
-
-                } else {
 
                     str += "<tr>" +
                             "<td >" + (Number(pageNum-1)*Number(18)+i) + "</td>" +
@@ -258,16 +254,14 @@
                             "</td>" +
                             "</tr>"
                 }
-            }
+
             $(".tableAchievement").html(str)
         }
     });
 
     function formatDate(ns){
-//        return new Date((ns)).for
         var unixTimestamp = new Date(ns) ;
         return  unixTimestamp.getFullYear() + "-" + (unixTimestamp.getMonth() + 1) + "-" + unixTimestamp.getDate() + " " ;
-//                .toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
     }
     function details(achievement_id) {
         location.href = "achievement_details.html?" + "txt=" + encodeURI(achievement_id);

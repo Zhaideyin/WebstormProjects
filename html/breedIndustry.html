@@ -4,52 +4,45 @@
     <base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>种子产业数据库</title>
-    <link rel="stylesheet" href="../css/liMarquee.css">
     <link href="../css/pgwslider.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/liMarquee.css">
     <link href="../css/fourDataBase.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/swiper-3.4.0.min.css" />
+    <script src="../js/jquery-1.10.1.min.js"></script>
+    <script src="../js/pgwslider.min.js"></script>
+    <script type="text/javascript" src="../js/const.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+    <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
+    <script type="text/javascript" src="../js/swiper-3.4.0.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(document).ready(function() {
+                $('.pgwSlider').pgwSlider();
+
+            });
+        });
+    </script>
+    <script src="../js/jquery.liMarquee.js"></script>
+    <script>
+    $(function(){
+    $('.content_right_content_scroll').liMarquee({
+    direction: 'up'
+    });
+    });
+    </script>
     <style>
         .content_main_right_lists{overflow: hidden;border-bottom:0.5px dashed #ddd;margin-bottom: 5px;padding-bottom: 2px;height: 22px;white-space:nowrap; }
         .rightTitle{overflow: hidden;float: left;display: inline-block;width: 80%;text-overflow:ellipsis;font-size: 15px; }.listTime{float: right;display:inline-block;width: 19%;font-size: 13px}
         .content_left_container2_contentQY{width: 320px; border: 0.5px #dddddd solid;float: left; } .content_left_container2_contentQY_title{border-bottom: 0.5px #dddddd solid;overflow: hidden;height: 40px; }
         .businessClass{ color: #0d8897;  font-size: 18px;   font-weight: 700; display: block;padding:8px;float: left; }.businessRight{ float: right;font-size: 13px;padding-top: 15px;display: block;}
         .business{;border-bottom: 0.5px dashed #dddddd;overflow: hidden;padding: 4px;} .businessTitle{font-size: 15px;float: left;}.businessMore{float: right;font-size: 12px;}
-       .content_left_container3_Two{overflow: hidden;}
+        .content_left_container3_Two{overflow: hidden;}
         .provinceIN ,.provinceOUT{ font-size: 17px;color: #12525e;display: block;float:  left; padding-left:15px; margin-right: 5px;height: 35px; background: url("../img/index_40.jpg") no-repeat;margin-top: 10px;}
         .content_left_container2_contentID{overflow: hidden;padding: 2px;border-top: 1px solid #dddddd;}
 
 
     </style>
-    <link rel="stylesheet" type="text/css" href="../css/swiper-3.4.0.min.css" />
-    <script type="text/javascript" src="../js/swiper-3.4.0.min.js"></script>
-    <script src="../js/jquery-1.10.1.min.js"></script>
-    <script src="../js/pgwslider.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $(document).ready(function() {
-                $('.pgwSlider').pgwSlider();
-            });
-        });
-    </script>
-    <script src="../js/jquery.liMarquee.js"></script>
-    <script>
-        $(function(){
-            $('.content_right_content_scroll').liMarquee({
-                direction: 'up'
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $(".provinceIN").click(function(){
-                $(".content_left_container3").show();
-                $(".content_left_container4").hide();
-            });
-            $(".provinceOUT").click(function(){
-                $(".content_left_container3").hide();
-                $(".content_left_container4").show();
-            });
-        });
-    </script>
 </head>
 <body>
 
@@ -222,7 +215,7 @@
                                        <a href="breedRightApplication.html" ><img src="../img/pingzhongquansq.jpg" style="width: 100%;height: 60px;" ></a>
                                    </div>
                                    <div class="content_left_container1List3_content">
-                                       <ul>
+                                       <ul class="breedExhibition">
                                            <li>“泗杨1号”,“泗杨2号”植物新品种获国家林业局品种权证书</li>
                                            <li>2016年度授予植物新品种权195项</li>
                                            <li>我国去年授予植物新品种权195项</li>
@@ -996,7 +989,6 @@
         </div>
     </div>
 </div>
-
 </body>
 <script>
     var swiper = new Swiper('.swiper-container', {
@@ -1009,5 +1001,38 @@
         spaceBetween: 30
 
     });
+</script>
+<script>
+    var str = "";var str1 = "";
+    //xsscd.xicp.net:8005  http://xsscd.xicp.net:8005/spsm/api/breed/list?page=1&count=1
+    /*$.ajax({
+        type: "get",
+        url: SERVER_URL+"/api/spider/listPageByDataType",
+        data: "page=1&count=6&datatypeName=政策法规",
+        dataType: "json",
+        success: function (msg) {
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+                str +="<div class='content_main_right_lists'>"+
+                        "<span class='rightTitle'><a"+
+                        " href='BINLdetailsAll.html?txt="+msg.data[i].SPIDER_ID+"'>"+msg.data[i].TITLE+"</a></span><span class='listTime'>"+ formatDate(msg.data[i].CREATE_TIME)+"</span>"+
+                        "</div>";
+            }
+            $(".content_left_container1List2_container").html(str)
+        }
+    });
+    $.ajax({
+        type: "get",
+        url: SERVER_URL+"/api/spider/listPageByDataType",
+        data: "page=1&count=9&datatypeName=农林公告",
+        dataType: "json",
+        success: function (msg) {
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+                str1 +="<li>"+msg.data[i].TITLE+"</li>";
+
+            }
+            $(".breedExhibition").html(str1)
+        }
+    });*/
+
 </script>
 </html>

@@ -564,4 +564,25 @@
 
     });
 </script>
+<script>
+    var str = "";
+    //xsscd.xicp.net:8005  http://xsscd.xicp.net:8005/spsm/api/breed/list?page=1&count=1
+    $.ajax({
+        type: "get",
+        url: SERVER_URL + "/api/spider/listPageByDataType",
+        data: "page=1&count=14&datatypeName=人物动态",
+        dataType: "json",
+        success: function (msg) {
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+
+                str += " <div class='content_main_right_lists'>" +
+                        "<span class='rightTitle'><a" +
+                        " href='AchievementDetails.html?txt=" + msg.data[i].SPIDER_ID + "'>" + msg.data[i].Title + "</a></span><span class='listTime'>+formatDate(msg.data[i].CREATE_TIME)+</span>" +
+                        "</div>>";
+
+                $(".content_left_container1List2P").html(str);
+            }
+        }
+    });
+    </script>
 </html>

@@ -166,7 +166,7 @@
                         <span class="content_main_rightTitle">人物动态</span><span class="position">首页&nbsp;>&nbsp;育种创新数据库&nbsp;>&nbsp;人物动态</span>
                     </div>
                     <div class="professorNews">
-                        <div class="items">
+                      <!--  <div class="items">
                             <div class="content_main_right_first_text_times">
                                 <img src="../img/20130418bg1.jpg" style="width: 90%; height:110px ">
                             </div>
@@ -181,8 +181,8 @@
                                 </div>
                             </div>
 
-                        </div>
-                        <div class="items">
+                        </div>-->
+                      <!--  <div class="items">
                             <div class="content_main_right_first_text_times">
                                 <img src="../img/20130418bg2.jpg" style="width: 90%; height:110px ">
                             </div>
@@ -283,9 +283,13 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div>-->
 
                     </div>
+                    <div class="tcdPageCode">
+
+                    </div>
+
                 </div>
 
             </div>
@@ -307,8 +311,77 @@
                 style="color: #cccbc9; font-size: 14px;"> Copyright news.sichuan.edu.cn All rights reserved</b></div>
     </div>
 </div>
-</div>
 
 </body>
+<script type="text/javascript" src="../js/const.js"></script>
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
+<script>
+    var str = "";
+    var totalPage = 0;
+    var pageNum = 1;
+    //xsscd.xicp.net:8005  http://xsscd.xicp.net:8005/spsm/api/breed/list?page=1&count=1
+    $.ajax({
+        type: "get",
+        url: SERVER_URL + "/api/spider/listPageByDataType",
+        data: "page=1&count=12&datatypeName=人物动态",
+        dataType: "json",
+        success: function (msg) {
+            totalPage = msg.totalPage;//得到总的页数
+            $(".tcdPageCode").createPage({//显示第一页 的数据
+                pageCount: totalPage,
+                current: pageNum,
+                backFn: function (p) {
+                    pageNum = p;
+                    $.ajax({//通过发送get请求，得到下一页的数据
+                        type: "get",
+                        url: SERVER_URL + "/api/spider/listPageByDataType",
+                        data: "page=" + pageNum + "&count=12&datatypeName=人物动态",
+                        dataType: "json",
+                        success: function (msg) {
+                            str = "";
+                            for (var i = 0; i < msg.data.length; i++) {
+                                var img ='';
+                                if(msg.data[i].ANNEXURLS!=null){
+                                    img =msg.data[i].ANNEXURLS.split(',',1)[0];
+                                }else{
+                                    img="../img/20130418bg1.jpg";
+                                }
+                                str +=   "<div class='items'>"+
+                                        "<div class='content_main_right_first_text_times'>"+
+                                        "<img src='"+img+ "'style='width: 90%; height:110px '>"+
+                                        "</div> <div class='content_main_right_first_text_items'>"+
+                                        "<h4>"+msg.data[i].TITLE+"</h4>"+
+                                        "<br> <div class='text'>"+
+                                        "<p>"+msg.data[i].CONTENT+"</p></div> </div> </div>";
 
+                            }
+                            $(".professorNews").html(str)
+                        }
+                    })
+
+                }
+            });
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+                var img ='';
+                if(msg.data[i].ANNEXURLS!=null){
+                    img =msg.data[i].ANNEXURLS.split(',',1)[0];
+                }else{
+                    img="../img/20130418bg1.jpg";
+
+                }
+                str +=   "<div class='items'>"+
+                        "<div class='content_main_right_first_text_times'>"+
+                        "<img src='"+img+ "' style='width: 90%; height:110px '>"+
+                        "</div> <div class='content_main_right_first_text_items'>"+
+                        "<h4>"+msg.data[i].TITLE+"</h4>"+
+                        "<br> <div class='text'>"+
+                        "<p>"+msg.data[i].CONTENT+"</p></div> </div> </div>";
+                //}
+            }
+            $(".professorNews").html(str)
+        }
+    });
+
+</script>
 </html>

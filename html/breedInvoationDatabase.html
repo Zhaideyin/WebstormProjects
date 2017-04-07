@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <base href="<%=basePath%>">
     <meta charset="UTF-8">
@@ -7,12 +7,14 @@
     <link href="../css/pgwslider.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/liMarquee.css">
     <link href="../css/fourDataBase.css" rel="stylesheet">
-    <style>
-    </style>
+    <link rel="stylesheet" type="text/css" href="../css/swiper-3.4.0.min.css" />
     <script src="../js/jquery-1.10.1.min.js"></script>
     <script src="../js/pgwslider.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/swiper-3.4.0.min.css" />
+    <script type="text/javascript" src="../js/const.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+    <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
     <script type="text/javascript" src="../js/swiper-3.4.0.min.js"></script>
+    <script src="../js/jquery.liMarquee.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $(document).ready(function() {
@@ -20,7 +22,6 @@
             });
         });
     </script>
-    <script src="../js/jquery.liMarquee.js"></script>
     <script>
         $(function(){
             $('.content_right_content_scroll').liMarquee({
@@ -28,8 +29,6 @@
             });
         });
     </script>
-
-
 </head>
 <body>
 
@@ -150,11 +149,11 @@
                                 <div class="content_left_container1List2_container">
                                 <div class="content_left_container1List2_content">
                                     <div class="ListTitle1">
-                                            <span class="industryTitleHead"><a href="AgencyService.html" target="_blank" style="color: #0d4450;">分子育种</a>
-                                            </span>   <span class="industryTitleMore"><a href="AgencyService.html" target="_blank" style="color:black;">更多>></a></span>
+                                            <span class="industryTitleHead"><a href="breedingMolecular.html" target="_blank" style="color: #0d4450;">分子育种</a>
+                                            </span>   <span class="industryTitleMore"><a href="breedingMolecular.html" target="_blank" style="color:black;">更多>></a></span>
                                     </div>
                                     <div class="ListContent">
-                                        <ul>
+                                        <ul class="ListContent1">
                                             <li> 将植物基因植入动物体内 科学家造出“菠菜”猪</li>
                                             <li>美国第一头克隆牛“艾米”产下牛犊喜作妈咪</li>
                                             <li>普通米诺鱼基因新发现 有助于人类心脏疾病研究</li>
@@ -165,37 +164,32 @@
                                 </div>
                                 <div class="content_left_container1List2_content">
                                     <div class="ListTitle2">
-<span class="industryTitleHead"><a href="AgencyService.html" target="_blank" style="color: #0d4450;">细胞育种</a>
-                                            </span>   <span class="industryTitleMore"><a href="AgencyService.html" target="_blank" style="color:black;">更多>></a></span>
+<span class="industryTitleHead"><a href="CellEngineering.html" target="_blank" style="color: #0d4450;">细胞育种</a>
+                                            </span>   <span class="industryTitleMore"><a href="CellEngineering.html" target="_blank" style="color:black;">更多>></a></span>
                                     </div>
                                     <div class="ListContent">
-                                        <ul>
-                                            <ul>
+                                        <ul class="ListContent2">
+
                                                 <li>垦丰种业红兴隆育种站考核22名科研人员</li>
                                                 <li>“实践十号”:家畜航天生物育种实验首次上太空</li>
                                                 <li>种猪育种管理系统提高种猪场信息化水平</li>
                                                 <li>六大育种方法比较 别说你不知道!</li>
-                                            </ul>
+
 
                                     </ul>
                                     </div>
                                 </div>
                                 <div class="content_left_container1List2_content">
                                     <div class="ListTitle3">
-<span class="industryTitleHead"><a href="AgencyService.html" target="_blank" style="color: #0d4450;">基因育种</a>
-                                            </span>   <span class="industryTitleMore"><a href="AgencyService.html" target="_blank" style="color:black;">更多>></a></span>
+<span class="industryTitleHead"><a href="geneticEngineering.html" target="_blank" style="color: #0d4450;">基因育种</a>
+                                            </span>   <span class="industryTitleMore"><a href="geneticEngineering.html" target="_blank" style="color:black;">更多>></a></span>
                                     </div>
                                     <div class="ListContent">
-                                        <ul>
-                                            <ul>
+                                        <ul class="ListContent3">
                                                 <li>畜牧发展,良种为先 育种:畜牧业发力新方向</li>
                                                 <li>欧盟加强种牛育种遗传资源管理</li>
                                                 <li>中国农科院烟草马铃薯Y病毒抗性基因研究取得新进展</li>
                                                 <li>华大基因：生命时代开启，基因工程发展超“摩尔定律”发展超“摩尔定律“</li>
-
-                                            </ul>
-
-
                                         </ul>
                                     </div>
                                 </div>
@@ -210,7 +204,7 @@
                                     <img src="../img/20151030083716521.jpg" style="width: 100%;height: 100px;" >
                                 </div>
                                 <div class="content_left_container1List3_content">
-                                      <ul>
+                                      <ul class="ListContent4">
                                           <li>牧草描述规范和数据标准</li>
                                           <li>牧草种质资源描述规范和数据标准</li>
                                           <li>苜蓿种质资源描述规范和数据标准</li>
@@ -377,15 +371,68 @@
 </div>
 </body>
 <script>
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        loop:true,
-        autoplay: 3000,//自动播放时间间隔
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        spaceBetween: 30
+var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    loop:true,
+    autoplay: 3000,//自动播放时间间隔
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    spaceBetween: 30
 
+});
+</script>
+<script>
+    var str = "";var str1 = "";var str2 = "";var str3 = "";
+    //xsscd.xicp.net:8005  http://xsscd.xicp.net:8005/spsm/api/breed/list?page=1&count=1
+    $.ajax({
+        type: "get",
+        url: SERVER_URL+"/api/spider/listPageByDataType",
+        data: "page=1&count=3&datatypeName=分子育种",
+        dataType: "json",
+        success: function (msg) {
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+                str +="    <li>"+msg.data[i].CONTENT+"</li>";
+            }
+            $(".listcontent1").html(str)
+        }
     });
+    $.ajax({
+        type: "get",
+        url: SERVER_URL+"/api/spider/listPageByDataType",
+        data: "page=1&count=4&datatypeName=细胞育种",
+        dataType: "json",
+        success: function (msg) {
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+                str1 +="<li>"+msg.data[i].CONTENT+"</li>";
+            }
+            $(".listcontent2").html(str1)
+        }
+    });
+    $.ajax({
+        type: "get",
+        url: SERVER_URL+"/api/spider/listPageByDataType",
+        data: "page=1&count=4&datatypeName=基因育种",
+        dataType: "json",
+        success: function (msg) {
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+                str2 +="<li>"+msg.data[i].CONTENT+"</li>";
+            }
+            $(".listcontent3").html(str2)
+        }
+    });
+    $.ajax({
+        type: "get",
+        url: SERVER_URL+"/api/spider/listPageByDataType",
+        data: "page=1&count=8&datatypeName=种质创新&创新材料",
+        dataType: "json",
+        success: function (msg) {
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+                str3 +="<li>"+msg.data[i].CONTENT+"</li>";
+            }
+            $(".listcontent4").html(str3)
+        }
+    });
+
 </script>
 </html>

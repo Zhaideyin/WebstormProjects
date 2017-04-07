@@ -224,6 +224,101 @@
 </div>
 
 </body>
+<script type="text/javascript" src="../js/const.js"></script>
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
+<script>
+    var str = "";
+    var totalPage = 0;
+    var pageNum = 1;
+    //xsscd.xicp.net:8005  http://xsscd.xicp.net:8005/spsm/api/breed/list?page=1&count=1
+    $.ajax({
+        type: "get",
+        url: SERVER_URL + "/api/spider/listPageByDataType",
+        data: "page=1&count=12&datatypeName=专利推介",
+        dataType: "json",
+        success: function (msg) {
+            totalPage = msg.totalPage;//得到总的页数
+            $(".tcdPageCode").createPage({//显示第一页 的数据
+                pageCount: totalPage,
+                current: pageNum,
+                backFn: function (p) {
+                    pageNum = p;
+                    $.ajax({//通过发送get请求，得到下一页的数据
+                        type: "get",
+                        url: SERVER_URL + "/api/spider/listPageByDataType",
+                        data: "page=" + pageNum + "&count=12&datatypeName=专利推介",
+                        dataType: "json",
+                        success: function (msg) {
+                            str = "";
+                            for (var i = 0; i < msg.data.length; i++) {
+                                str += "<div class='content_main_right_lists'>"+
+                                "<span class='rightTitle'><a"+
+                                        " href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"'>"</a></span><span class='listTime'>2016.12.12</span>"+
+                                "</div>";
 
-</html>
+                            }
+                            $(".content_main_right_box").html(str)
+                        }
+                    })
+
+                }
+            });
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+
+
+                str +="<div class='content_main_right_list'>" +
+                        "<div class='content_main_right_list_left'>" +
+                        "<div class='content_main_right_list_img'>" +
+                        "<img src="+msg.data[i].ANNEXURLS.split(',',1)[0]+" style=\'width:100%;height: 115px;\'>" +
+                        "</div>" +
+                        "<div class='content_main_right_list_text'>" +
+                        "<div class='content_main_right_list_text_head'>" +
+                        "<h5><a"+
+                        " href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"'>"  + msg.data[i].TITLE + "</a></h5>"+
+                        "</div>" +
+                        "<div class='content_main_right_list_text_content'>" +
+                        "<p>"+msg.data[i].CONTENT.replace(/<s?img[^>]*>/gi, ' ')+"</p>" +
+                        "</div>" +
+                        "<div class='content_main_right_list_text_end'>" +
+                        "<div class='content_main_right_list_text_end_left'>" +
+                        "<span>2016-05-11</span>" +
+                        "</div>" +
+                        "<div class='content_main_right_list_text_end_right'>" +
+                        "<a href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"'> <span>查看详情>></span></a>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>"+
+
+                        "<div class='content_main_right_list_right'>" +
+                        "<div class='content_main_right_list_img'>" +
+                        "<img src="+msg.data[++i].ANNEXURLS.split(',',1)[0]+" style='width:100%;height: 115px;'>" +
+                        "</div>" +
+                        "<div class='content_main_right_list_text'>" +
+                        "<div class='content_main_right_list_text_head'>" +
+                        "<h5><a"+
+                        " href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"'>"  + msg.data[i].TITLE + "</a></h5>" +
+                        "</div>" +
+                        "<div class='content_main_right_list_text_content'>" +
+                        "<p>"+msg.data[i].CONTENT.replace(/<s?img[^>]*>/gi, ' ')+"</p>" +
+                        "</div>" +
+                        "<div class='content_main_right_list_text_end'>" +
+                        "<div class='content_main_right_list_text_end_left'>" +
+                        "<span>2015-10-15</span>" +
+                        "</div>" +
+                        "<div class='content_main_right_list_text_end_right'>" +
+                        "<a href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"'> <span>查看详情>></span></a>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+                //}
+            }
+            $(".content_main_right_list_content").html(str)
+        }
+    });
+
+</script>
 </html>
