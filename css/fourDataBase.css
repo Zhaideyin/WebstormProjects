@@ -80,7 +80,7 @@ a {  text-decoration:none;  }
 .content_left_container3_contentList_img{ border: solid 1px #dddddd; margin: 2px}
 .content_left_container3_contentList_text{ border: solid 0.5px #dddddd;}
 .content_left_container3_contentList{float: left;margin-left: 1px;width: 164px;}
-.industryList{ background: url("../img/index_17.jpg") no-repeat; margin: 2px;border-bottom: dashed 0.5px #dddddd;overflow: hidden;} .breedList{    float: left;  font-size: 15px;  padding-left: 21px;  display: block;  position: relative;  top: -4px;}.breedListMore{float: right;font-size: 11px;margin-right: 10px;}
+.industryList{ background: url("../img/index_17.jpg") no-repeat; margin: 2px;border-bottom: dashed 0.5px #dddddd;overflow: hidden;} .breedList{  overflow: hidden;   white-space: nowrap;  text-overflow: ellipsis; float: left;  font-size: 15px;  padding-left: 21px;  display: block;  position: relative;  top: -4px;-o-text-overflow: ellipsis;}.breedListMore{float: right;font-size: 11px;margin-right: 10px;}
 .content_left_container3_title{width: 100%;background: url("../img/种业导航.jpg") no-repeat;height: 45px;padding-top: 5px; } .content_left_container3_title span{ color: #ffffff;margin-left: 190px;margin-top:40px;font-size: 20px;}
 .content_left_container2_title{width: 100%;background: url("../img/育种知识服务.jpg") no-repeat;height: 45px;padding-top: 5px; } .content_left_container2_title span{margin-left: 150px;margin-top:40px;font-size: 20px;}
 .content_left_container1_title{ margin-top: 10px; font-size: 18px;background: url("../img/index_09.jpg") no-repeat; color: #12525e;height: 40px;padding: 1px 0px 0px 15px;}
@@ -88,7 +88,17 @@ a {  text-decoration:none;  }
 .content_left_container1List1_Title, .content_left_container1List2_Title,.content_left_container1List3_Title{border-bottom: 0.5px solid #dddddd;padding: 8px;}
 .title{color: #0d8897;font-size: 18px;padding-left: 10px;font-weight: 700;}  .titleMore{font-size: 14px;float: right;color: #313131;}
 .content_left_container1List1_content_list{border-bottom: 0.5px solid #dddddd;overflow: hidden;padding: 8px;height: 89px}
-.newImg{float: left;width: 40%;} .newText{float: left;width: 59%;height: 85px;margin-left: 2px;}.newText a{color: #000000;} .newText p{font-size: 15px;letter-spacing: 1px;margin-left: 5px;display: -webkit-box;  -webkit-box-orient: vertical;  -webkit-line-clamp: 3;  overflow: hidden;} .newText span {float: right;  font-size: 11px;  display: block;  position: relative; }
+.newImg{float: left;width: 40%;}
+.newText{float: left;
+    width: 59%;
+    height: 85px;
+    margin-left: 2px;
+    /* white-space: nowrap; */
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden;}
+.newText a{color: #000000;}
+.newText p{font-size: 15px;letter-spacing: 1px;margin-left: 5px;display: -webkit-box;  -webkit-box-orient: vertical;  -webkit-line-clamp: 3;  overflow: hidden;} .newText span {float: right;  font-size: 11px;  display: block;  position: relative; }
 .content_left_container1List2_container{padding: 5px;}
 .content_left_container1List2_content{margin-bottom: 6px; margin-top: 1px; overflow: hidden;border: solid 0.5px #dddddd;}
 .industryTitle{overflow: hidden;border-bottom: solid 0.5px #dddddd;height: 30px;} .industryTitleHead{padding-left: 16px;color: #0d4450;font-size: 16px;font-weight:600;float: left;display:block;background: url("../img/index_40.jpg") no-repeat;margin-top: 5px;margin-left: 10px;}.industryTitleMore{ font-size: 12px;float: right; margin-top: 5px;display: inline-block;margin-right: 10px;}.industryTitle a{color: #0a0903}

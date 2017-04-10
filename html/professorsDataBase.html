@@ -231,6 +231,7 @@
 </div>
 
 </body>
+<script type="text/javascript" src="../js/const.js"></script>
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
 <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
 <script>
@@ -240,7 +241,7 @@
     //xsscd.xicp.net:8005  http://xsscd.xicp.net:8005/spsm/api/breed/list?page=1&count=1
     $.ajax({
         type: "get",
-        url: SERVER_URL +"/spsm/api/person/list",
+        url: SERVER_URL +"/api/person/list",
         data: "page=1&count=24",
         dataType: "json",
         success: function (msg) {
@@ -252,13 +253,12 @@
                     pageNum = p;
                     $.ajax({//通过发送get请求，得到下一页的数据
                         type: "get",
-                        url: SERVER_URL +"/spsm/api/person/list",
+                        url: SERVER_URL +"/api/person/list",
                         data: "page=" + pageNum + "&count=24",
                         dataType: "json",
                         success: function (msg) {
                             str = "";
                             for (var i = 0; i < msg.data.length; i++) {
-                                var num = i + 1;
                                 str += "<tr>" +
                                         "<td >" + (Number(pageNum-1)*Number(24)+i) + "</td>" +
                                         "<td >"+
@@ -295,10 +295,8 @@
         }
     });
     function formatDate(ns){
-//        return new Date((ns)).for
         var unixTimestamp = new Date(ns) ;
        return  unixTimestamp.getFullYear() + "年" + (unixTimestamp.getMonth() + 1) + "月" + unixTimestamp.getDate() + "日 " ;
-//                .toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
     }
 
 

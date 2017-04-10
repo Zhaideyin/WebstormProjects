@@ -33,7 +33,7 @@
             font-size: 15px;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 4;
             overflow: hidden;
             letter-spacing: 1px;
         }
@@ -121,7 +121,7 @@
                     <div class="content_main_left_terms1">
                         <div class="content_main_left_terms1_title"><span> 最新动态</span></div>
                         <div class="leftNewsTitleContent">
-                            <div class="leftNewsTitleContentList"><span>                                         国家林业局副局长孙扎根在全国油茶遗传资源调查编目工作启                                     </span>
+                           <!-- <div class="leftNewsTitleContentList"><span>                                         国家林业局副局长孙扎根在全国油茶遗传资源调查编目工作启                                     </span>
                             </div>
                             <div class="leftNewsTitleContentList"><span>                                        国家林业局总工程师陈凤学在国家林业局知识产权研究中心成立揭牌仪式上的讲话                                    </span>
                             </div>
@@ -140,7 +140,7 @@
                             <div class="leftNewsTitleContentList"><span>                                        中国种业十大功勋人物事迹引发强烈反响                                     </span>
                             </div>
                             <div class="leftNewsTitleContentList"><span>                                         张海银：“种业强国是我毕生追求”                                     </span>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="content_main_left_terms1">
@@ -317,14 +317,14 @@
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
 <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
 <script>
-    var str = "";
+    var str = "";var str1=" ";
     var totalPage = 0;
     var pageNum = 1;
     //xsscd.xicp.net:8005  http://xsscd.xicp.net:8005/spsm/api/breed/list?page=1&count=1
     $.ajax({
         type: "get",
         url: SERVER_URL + "/api/spider/listPageByDataType",
-        data: "page=1&count=12&datatypeName=人物动态",
+        data: "page=1&count=7&datatypeName=人物动态",
         dataType: "json",
         success: function (msg) {
             totalPage = msg.totalPage;//得到总的页数
@@ -336,24 +336,23 @@
                     $.ajax({//通过发送get请求，得到下一页的数据
                         type: "get",
                         url: SERVER_URL + "/api/spider/listPageByDataType",
-                        data: "page=" + pageNum + "&count=12&datatypeName=人物动态",
+                        data: "page=" + pageNum + "&count=7&datatypeName=人物动态",
                         dataType: "json",
                         success: function (msg) {
                             str = "";
                             for (var i = 0; i < msg.data.length; i++) {
-                                var img ='';
-                                if(msg.data[i].ANNEXURLS!=null){
+                                var img='../img/33925.jpg';
+                                if(msg.data[i].ANNEXURLS!="" && msg.data[i].ANNEXURLS!=null){
                                     img =msg.data[i].ANNEXURLS.split(',',1)[0];
-                                }else{
-                                    img="../img/20130418bg1.jpg";
                                 }
                                 str +=   "<div class='items'>"+
                                         "<div class='content_main_right_first_text_times'>"+
-                                        "<img src='"+img+ "'style='width: 90%; height:110px '>"+
+                                        "<img src='"+img+"' style='width: 90%; height:110px '>"+
                                         "</div> <div class='content_main_right_first_text_items'>"+
-                                        "<h4>"+msg.data[i].TITLE+"</h4>"+
+                                        "<h4><a"+
+                                        " href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"'>"+msg.data[i].TITLE+"</h4>"+
                                         "<br> <div class='text'>"+
-                                        "<p>"+msg.data[i].CONTENT+"</p></div> </div> </div>";
+                                        "<p>"+msg.data[i].CONTENT.replace(/<s?(embed|img)[^>]*>/gi, ' ')+"</p></div> </div> </div>";
 
                             }
                             $(".professorNews").html(str)
@@ -362,24 +361,43 @@
 
                 }
             });
-            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
-                var img ='';
-                if(msg.data[i].ANNEXURLS!=null){
-                    img =msg.data[i].ANNEXURLS.split(',',1)[0];
-                }else{
-                    img="../img/20130418bg1.jpg";
 
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+                var img='../img/33925.jpg';
+                if(msg.data[i].ANNEXURLS.trim()!="" && msg.data[i].ANNEXURLS!=null){
+                    img =msg.data[i].ANNEXURLS.split(',',1)[0];
                 }
+
+                //style='width: 90%; height:110px
                 str +=   "<div class='items'>"+
                         "<div class='content_main_right_first_text_times'>"+
-                        "<img src='"+img+ "' style='width: 90%; height:110px '>"+
+                        "<img src='"+img+"' style='width: 90%; height:110px'>"+
                         "</div> <div class='content_main_right_first_text_items'>"+
-                        "<h4>"+msg.data[i].TITLE+"</h4>"+
+                        "<h4><a"+
+                        " href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"'>" +msg.data[i].TITLE+"</a></h4>"+
                         "<br> <div class='text'>"+
-                        "<p>"+msg.data[i].CONTENT+"</p></div> </div> </div>";
+                        "<p>"+msg.data[i].CONTENT.replace(/<s?(embed|img)[^>]*>/gi, ' ')+"</p></div> </div> </div>";
                 //}
             }
             $(".professorNews").html(str)
+        }
+    });
+    $.ajax({
+        type: "get",
+        url: SERVER_URL + "/api/spider/listPageByDataType",
+        data: "page=1&count=10&datatypeName=人物动态",
+        dataType: "json",
+        success: function (msg) {
+
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+
+
+                str1 +=   "<div class='leftNewsTitleContentList'><span> <a"+
+                        " href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"'>"+msg.data[i].TITLE+" </a> </span>"+
+                        "</div>";
+
+            }
+            $(".leftNewsTitleContent").html(str1)
         }
     });
 

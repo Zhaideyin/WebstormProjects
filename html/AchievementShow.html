@@ -404,14 +404,13 @@
     });
     $.ajax({
         type: "get",
-        url: SERVER_URL + "/spsm/api/achievement/list",
-        data: "page=1&count=13",
+        url: SERVER_URL +"/api/achievement/list",
+        data: "page=1&count=12",
         dataType: "json",
         success: function (msg) {
             for (var i = 0; i < msg.data.length; i++) {
-
                 str1 += "<tr>" +
-                        "<td >" + (Number(pageNum-1)*Number(18)+i) + "</td>" +
+                        "<td >" +(i+1) + "</td>" +
                         "<td style='height:30px;overflow: hidden;text-overflow:ellipsis;display: block;white-space: nowrap;padding-top: 10px;text-align: left'>"+
                         "<a class='details' target='_blank' href='achievement_details.html?txt="+msg.data[i].ACHIEVEMENT_ID+"0'>"+ msg.data[i].TITLE +"</a>"+
                         "</td>"
@@ -420,7 +419,7 @@
                         "</td>" +
                         "</tr>"
             }
-            $(".tableAchievement").html(str1)
+            $(".tableAchievement").html(str1);
         }
     });
 

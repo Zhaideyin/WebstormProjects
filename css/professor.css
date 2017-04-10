@@ -35,6 +35,10 @@ a{  color: black;  text-decoration: none;  }
 .leftNewsTitleContent{padding-bottom: 10px;}
 .dataBaseTitle{color: #ffffff;text-align: center;height: 40px;padding-top:10px;border-left:solid 30px #0d4450; }
 .dataBaseTitle span{font-size: 28px;}
+.newText{
+
+
+}
 .leftNewsTitleContentList{border-bottom: dashed 0.5px #dddddd;padding: 10px;}.leftNewsTitleContentList span{ padding-left:15px;overflow: hidden;white-space:nowrap; width: 98%;text-overflow: ellipsis;display: block;height: 18px;background: url("../img/index_17.jpg")no-repeat;}
 .tcdPageCode {
     padding: 15px 20px;

@@ -99,6 +99,7 @@
     <link href="../css/pgwslider.min.css" rel="stylesheet">
     <link href="../css/fourDataBase.css" rel="stylesheet">
     <script src="../js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../js/const.js"></script>
     <script src="../js/pgwslider.min.js"></script>
     <script src="../js/jquery.liMarquee.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/swiper-3.4.0.min.css"/>
@@ -181,7 +182,7 @@
                             <div class="content_left_containerP">
                                 <div class="content_left_container1List1P">
                                     <div class="content_left_container1List1_content">
-                                        <div class="content_left_container1List1_content_list">
+                                       <!-- <div class="content_left_container1List1_content_list">
                                             <div class="newImg">
                                                 <img src="../img/20130418bg1.jpg" style="width: 96px;height: 80px;">
                                             </div>
@@ -221,12 +222,12 @@
                                                 <p>各位领导，同志们大家上午好！今天很高兴参加林业知识产权高层论坛。借此机会，我受田力普局长委托，代表国家知识产权局，</p>
                                                 <span><a href=professorNewsMore4.html">更多>></a> </span>
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                     </div>
                                 </div>
                                 <div class="content_left_container1List2P">
-                                    <div class="content_main_right_lists">
+                                   <!-- <div class="content_main_right_lists">
                                         <span class="rightTitle"><a href="BINLdetails2.html" style="color: #0a0903;">北京市农业局代表团到甘肃省农牧厅考察交流种业有关工作</a></span><span
                                             class="listTime">2016.12.12</span>
                                     </div>
@@ -281,7 +282,7 @@
                                     <div class="content_main_right_lists">
                                         <span class="rightTitle"><a href="BINLdetails2.html" style="color: #0a0903;">浙江省举办新《种子法》培训班暨现代种业工作会议</a></span><span
                                             class="listTime">2016.12.12</span>
-                                    </div>
+                                    </div>-->
 
                                 </div>
 
@@ -565,7 +566,7 @@
     });
 </script>
 <script>
-    var str = "";
+    var str = "";var str1 = "";
     //xsscd.xicp.net:8005  http://xsscd.xicp.net:8005/spsm/api/breed/list?page=1&count=1
     $.ajax({
         type: "get",
@@ -574,13 +575,39 @@
         dataType: "json",
         success: function (msg) {
             for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
-
                 str += " <div class='content_main_right_lists'>" +
                         "<span class='rightTitle'><a" +
-                        " href='AchievementDetails.html?txt=" + msg.data[i].SPIDER_ID + "'>" + msg.data[i].Title + "</a></span><span class='listTime'>+formatDate(msg.data[i].CREATE_TIME)+</span>" +
-                        "</div>>";
+                        " href='AchievementDetails.html?txt=" + msg.data[i].SPIDER_ID + "' style='color: #0a0903'>" + msg.data[i].TITLE + "</a></span><span class='listTime'>"+formatDate(msg.data[i].CREATE_TIME)+"</span>" +
+                        "</div>";
 
                 $(".content_left_container1List2P").html(str);
+            }
+        }
+    });
+    $.ajax({
+        type: "get",
+        url: SERVER_URL + "/api/spider/listPageByDataType",
+        data: "page=4&count=4&datatypeName=人物动态",
+        dataType: "json",
+        success: function (msg) {
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+
+                var img='../img/u=2329523184,248910402&fm=23&gp=0.jpg';
+                if(msg.data[i].ANNEXURLS!="" && msg.data[i].ANNEXURLS!=null){
+                    img =msg.data[i].ANNEXURLS.split(',',1)[0];
+                }
+                str1 +=  "<div class='content_left_container1List1_content_list'>"+
+                        "<div class='newImg'>"+
+                        "<a" +
+                        " href='AchievementDetails.html?txt=" + msg.data[i].SPIDER_ID + "' style='color: #0a0903'><img src='"+img+"' style='width: 96px;height: 80px;'><a/>"+
+                        "</div>"+
+                        "<div class='newText'>"+
+
+                        "<p>"+msg.data[i].CONTENT.replace(/<s?(embed|img)[^>]*>/gi, ' ')+"</p>"+
+                       " </div>"+
+                        "</div>";
+
+                $(".content_left_container1List1P").html(str1);
             }
         }
     });

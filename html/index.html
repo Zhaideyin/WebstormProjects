@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/liMarquee.css">
     <link rel="stylesheet" type="text/css" href="../css/swiper-3.4.0.min.css"/>
+    <script type="text/javascript" src="../js/const.js"></script>
     <script type="text/javascript" src="../js/swiper-3.4.0.min.js"></script>
     <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.min.js"></script>
     <script src="../js/jquery-3.1.1.min.js"></script>
@@ -393,7 +394,7 @@
                     <div class="unit1">
                         <div class="title"><h2>育种热点追踪</h2><a href=" hotSportOfBreed.html" target="_blank">更多</a></div>
                         <img src="../img/20161026091319931119.jpg">
-                        <ul>
+                        <ul class="ulLists">
                             <li><a href="zx/kjyw/277381.shtml" title="他们用什么方法让3000单农业众筹获得投资" target="_blank">
                                 农业“嫁接”光伏，结什么果？
                             </a></li>
@@ -950,6 +951,22 @@
         prevButton: '.swiper-button-prev',
         spaceBetween: 30
 
+    });
+</script>
+<script>
+    var str1=" ";
+    $.ajax({
+        type: "get",
+        url: SERVER_URL+"/api/spider/listPageByDataType",
+        data: "page=1&count=3&datatypeName=前沿育种研究",
+        dataType: "json",
+        success: function (msg) {
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+                str1 +="    <li><a"+
+                        " href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"' STYLE='color: #000000'  >"+msg.data[i].TITLE+"</a></li>";
+            }
+            $(".ListContent1").html(str1)
+        }
     });
 </script>
 </body>

@@ -229,7 +229,9 @@
                                     href="BINLdetails2.html">试管薯技术可提高育种效率30%</a></span><span class="listTime">2016.11.11</span>
                         </div>-->
                     </div>
+                    <div class="tcdPageCode">
 
+                    </div>
 
                 </div>
             </div>
@@ -265,7 +267,7 @@
     $.ajax({
         type: "get",
         url: SERVER_URL+"/api/spider/listPageByDataType",
-        data: "page=1&count=6&datatypeName=其他",
+        data: "page=1&count=24&datatypeName=前沿育种研究",
         dataType: "json",
         success: function (msg) {
             totalPage = msg.totalPage;//得到总的页数
@@ -277,7 +279,7 @@
                     $.ajax({//通过发送get请求，得到下一页的数据
                         type: "get",
                         url: SERVER_URL+"/api/spider/listPageByDataType",
-                        data: "page="+pageNum+"&count=6&datatypeName=其他",
+                        data: "page="+pageNum+"&count=24&datatypeName=前沿育种研究",
                         dataType: "json",
                         success: function (msg) {
                             str = "";
@@ -296,11 +298,7 @@
                 }
             });
             for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
-                var num = i + 1;
-                /*  if (i == 0) {
 
-
-                 } else {*/
 
                 str +="<div class='content_main_right_lists'>"+
                         "<span class='rightTitle'><a"+

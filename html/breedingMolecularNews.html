@@ -169,7 +169,7 @@
     $.ajax({
         type: "get",
         url: SERVER_URL+"/api/spider/listPageByDataType",
-        data: "page=1&count=6&datatypeName=分子育种",
+        data: "page=1&count=24&datatypeName=前沿育种研究",
         dataType: "json",
         success: function (msg) {
             totalPage = msg.totalPage;//得到总的页数
@@ -181,7 +181,7 @@
                     $.ajax({//通过发送get请求，得到下一页的数据
                         type: "get",
                         url: SERVER_URL+"/api/spider/listPageByDataType",
-                        data: "page="+pageNum+"&count=6&datatypeName=分子育种",
+                        data: "page="+pageNum+"&count=24&datatypeName=前沿育种研究",
                         dataType: "json",
                         success: function (msg) {
                             str = "";

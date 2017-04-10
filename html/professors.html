@@ -156,7 +156,7 @@
                     <div class="content_main_left_terms1">
                         <div class="content_main_left_terms1_title"><span> 最新动态</span></div>
                         <div class="leftNewsTitleContent">
-                            <div class="leftNewsTitleContentList"><span>                                         国家林业局副局长孙扎根在全国油茶遗传资源调查编目工作启                                     </span>
+                           <!-- <div class="leftNewsTitleContentList"><span>                                         国家林业局副局长孙扎根在全国油茶遗传资源调查编目工作启                                     </span>
                             </div>
                             <div class="leftNewsTitleContentList"><span>                                        国家林业局总工程师陈凤学在国家林业局知识产权研究中心成立揭牌仪式上的讲话                                    </span>
                             </div>
@@ -176,7 +176,7 @@
                             <div class="leftNewsTitleContentList"><span>                                        中国种业十大功勋人物事迹引发强烈反响                                     </span>
                             </div>
                             <div class="leftNewsTitleContentList"><span>                                         张海银：“种业强国是我毕生追求”                                     </span>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="content_main_left_terms1">
@@ -350,17 +350,18 @@
 
 
 </body>
+<script type="text/javascript" src="../js/const.js"></script>
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
 <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
 <script>
-    var str = "";
+    var str = "";var str1="";
     var totalPage = 0;
     var pageNum = 1;
     //xsscd.xicp.net:8005  http://xsscd.xicp.net:8005/spsm/api/breed/list?page=1&count=1
     $.ajax({
         type: "get",
-        url: SERVER_URL +"/spsm/api/person/list",
-        data: "page=1&count=24",
+        url: SERVER_URL +"/api/person/list",
+        data: "page=1&count=12",
         dataType: "json",
         success: function (msg) {
             for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
@@ -392,6 +393,24 @@
         location.href = "professor_details.html?" + "txt=" + encodeURI(breed_id);
 
     }
+    $.ajax({
+        type: "get",
+        url: SERVER_URL + "/api/spider/listPageByDataType",
+        data: "page=1&count=10&datatypeName=人物动态",
+        dataType: "json",
+        success: function (msg) {
+
+            for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
+
+
+                str1 +=   "<div class='leftNewsTitleContentList'><span> <a"+
+                        " href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"'>"+msg.data[i].TITLE+" </a> </span>"+
+                        "</div>";
+
+            }
+            $(".leftNewsTitleContent").html(str1)
+        }
+    });
 
 </script>
 </html>

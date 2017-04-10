@@ -271,7 +271,7 @@
     $.ajax({
         type: "get",
         url: SERVER_URL+"/api/spider/listPageByDataType",
-        data: "page=1&count=6&datatypeName=政策法规",
+        data: "page=1&count=20&datatypeName=政策法规",
         dataType: "json",
         success: function (msg) {
             totalPage = msg.totalPage;//得到总的页数
@@ -283,7 +283,7 @@
                     $.ajax({//通过发送get请求，得到下一页的数据
                         type: "get",
                         url: SERVER_URL+"/api/spider/listPageByDataType",
-                        data: "page="+pageNum+"&count=6&datatypeName=政策法规",
+                        data: "page="+pageNum+"&count=20&datatypeName=政策法规",
                         dataType: "json",
                         success: function (msg) {
                             str = "";
@@ -302,17 +302,12 @@
                 }
             });
             for (var i = 0; i < msg.data.length; i++) {//取得第一页数据
-                var num = i + 1;
-                /*  if (i == 0) {
 
-
-                 } else {*/
 
                 str +="<div class='content_main_right_lists'>"+
                         "<span class='rightTitle'><a"+
                         " href='BINLdetailsAll.html?txt="+msg.data[i].SPIDER_ID+"'>"+msg.data[i].TITLE+"</a></span><span class='listTime'>"+ formatDate(msg.data[i].CREATE_TIME)+"</span>"+
                         "</div>";
-                //}
             }
             $(".content_main_right_box").html(str)
         }

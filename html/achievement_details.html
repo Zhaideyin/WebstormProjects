@@ -71,6 +71,7 @@
 
 </div>
 </body>
+<script type="text/javascript" src="../js/const.js"></script>
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
 <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
 <script language="javascript" type="text/javascript">
@@ -78,7 +79,7 @@
     var n1 = loc.length;//地址的总长度
     var n2 = loc.indexOf("=");//取得=号的位置
     var breed_id = decodeURI(loc.substr(n2 + 1, n1 - n2));//从=号后面的内容
-    var url = "http://xsscd.xicp.net:8005/spsm/api/achievement/info";
+    var url = SERVER_URL+"/api/achievement/info";
     $.ajax({//通过发送get请求，得到下一页的数据
         type: "get",
         url: url,
@@ -86,7 +87,7 @@
         dataType: "json",
         success: function (msg) {
             str = "";
-            str =  "<tr >"+
+            str +=  "<tr >"+
                     "<td colspan='2'><img src='../img/icon_book.gif' align='absmiddle'> <span class='txt05'>"+msg.TITLE+"</span> </td> </tr>"+
                     "<tr class='bg03'>" +
                     "<td width='20%' valign='top'>【成果名称】</td>" +

@@ -197,6 +197,7 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="../js/const.js"></script>
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
 <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
 <script>
@@ -206,7 +207,7 @@
     //http://xsscd.xicp.net:8005/spsm/api/achievement/list
     $.ajax({
         type: "get",
-        url: SERVER_URL +"/spsm/api/achievement/list",
+        url: SERVER_URL +"/api/achievement/list",
         data: "page=1&count=18",
         dataType: "json",
         success: function (msg) {
@@ -218,7 +219,7 @@
                     pageNum = p;
                     $.ajax({//通过发送get请求，得到下一页的数据
                         type: "get",
-                        url: SERVER_URL +"/spsm/api/achievement/list",
+                        url: SERVER_URL +"/api/achievement/list",
                         data: "page=" + pageNum + "&count=18",
                         dataType: "json",
                         success: function (msg) {
@@ -228,7 +229,7 @@
                                 str += "<tr>" +
                                         "<td >" + (Number(pageNum-1)*Number(18)+i) + "</td>" +
                                         "<td style='height:30px;overflow: hidden;text-overflow:ellipsis;display: block;white-space: nowrap;padding-top: 10px;text-align: left'>"+
-                                        "<a class='details' target='_blank' href='achievement_details.html?txt="+msg.data[i].ACHIEVEMENT_ID+"0'>"+ msg.data[i].TITLE +"</a>"+
+                                        "<a class='details' target='_blank' href='achievement_details.html?txt="+msg.data[i].ACHIEVEMENT_ID+"'>"+ msg.data[i].TITLE +"</a>"+
                                         "</td>"
                                         + "<td >"
                                         +formatDate(msg.data[i].CREATE_TIME)+

@@ -319,10 +319,14 @@
         dataType: "json",
         success: function (msg) {
             for (var i = 0; i < msg.data.length; i++) {
+                var img='../img/u=2329523184,248910402&fm=23&gp=0.jpg';
+                if(msg.data[i].ANNEXURLS!="" && msg.data[i].ANNEXURLS!=null){
+                    img =msg.data[i].ANNEXURLS.split(',',1)[0];
+                }
                 str +="<div class='content_main_right_list'>" +
                         "<div class='content_main_right_list_left'>" +
                         "<div class='content_main_right_list_img'>" +
-                        "<img src="+msg.data[i].ANNEXURLS.split(',',1)[0]+" style=\'width:100%;height: 115px;\'>" +
+                        "<img src='"+img+"' style=\'width:100%;height: 115px;\'>" +
                         "</div>" +
                         "<div class='content_main_right_list_text'>" +
                         "<div class='content_main_right_list_text_head'>" +
@@ -345,12 +349,12 @@
 
                         "<div class='content_main_right_list_right'>" +
                         "<div class='content_main_right_list_img'>" +
-                        "<img src="+msg.data[++i].ANNEXURLS.split(',',1)[0]+" style='width:100%;height: 115px;'>" +
+                        "<img src='"+img+"' style='width:100%;height: 115px;'>" +
                         "</div>" +
                         "<div class='content_main_right_list_text'>" +
                         "<div class='content_main_right_list_text_head'>" +
                         "<h5><a"+
-                        " href='AchievementDetails.html?txt="+msg.data[i].SPIDER_ID+"'>"  + msg.data[i].TITLE + "</a></h5>" +
+                        " href='AchievementDetails.html?txt="+msg.data[++i].SPIDER_ID+"'>"  + msg.data[i].TITLE + "</a></h5>" +
                         "</div>" +
                         "<div class='content_main_right_list_text_content'>" +
                         "<p>"+msg.data[i].CONTENT.replace(/<s?img[^>]*>/gi, ' ')+"</p>" +
@@ -372,14 +376,14 @@
     });
     $.ajax({
         type: "get",
-        url: SERVER_URL + "/spsm/api/patent/list",
+        url: SERVER_URL + "/api/patent/list",
         data: "page=1&count=13",
         dataType: "json",
         success: function (msg) {
             for (var i = 0; i < msg.data.length; i++) {
 
                 str1 += "<tr>" +
-                        "<td >" + (Number(pageNum-1)*Number(18)+i) + "</td>" +
+                        "<td >" + (i+1) + "</td>" +
                         "<td style='height:30px;overflow: hidden;text-overflow:ellipsis;display: block;white-space: nowrap;padding-top: 10px;text-align: left'>"+
                         "<a class='details' target='_blank' href='patent_details.html?txt="+msg.data[i].PATENT_ID+"'>"+ msg.data[i].TITLE +"</a>"+
                         "</td>"

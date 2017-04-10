@@ -220,7 +220,7 @@
     $.ajax({
         type: "get",
         url: SERVER_URL+"/api/spider/listPageByDataType",
-        data: "page=1&count=6&datatypeName=种质创新&材料创新",
+        data: "page=1&count=18&datatypeName=种质创新",
         dataType: "json",
         success: function (msg) {
             totalPage = msg.totalPage;//得到总的页数
@@ -232,7 +232,7 @@
                     $.ajax({//通过发送get请求，得到下一页的数据
                         type: "get",
                         url: SERVER_URL+"/api/spider/listPageByDataType",
-                        data: "page="+pageNum+"&count=6&datatypeName=种质创新&材料创新",
+                        data: "page="+pageNum+"&count=18&datatypeName=种质创新",
                         dataType: "json",
                         success: function (msg) {
                             str = "";
